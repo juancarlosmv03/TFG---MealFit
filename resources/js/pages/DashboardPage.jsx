@@ -6,11 +6,11 @@ import BarrasNutricion from '../../components/dashboard/BarrasNutricion';
 import ComidaCard from '../../components/dashboard/ComidaCard';
 
 const DashboardPage = () => {
-  const caloriasTotales = 1200;
+  const caloriasTotales = 1500;
   const objetivoCalorias = 2000;
 
   const macros = {
-    proteinas: { valor: 88, objetivo: 120 },
+    proteinas: { valor: 100, objetivo: 120 },
     carbohidratos: { valor: 96, objetivo: 198 },
     grasas: { valor: 32, objetivo: 66 },
   };
