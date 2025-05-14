@@ -1,27 +1,31 @@
-// src/components/rutinas/TipoSelector.jsx
-import React from 'react';
+// resources/js/components/TipoSelector.jsx
+import React, { useState } from 'react';
 
-const TipoSelector = ({ activo, onSelect }) => {
+const TipoSelector = ({ onChange }) => {
+  const [tipo, setTipo] = useState('personalizadas');
+
+  const handleClick = (nuevo) => {
+    setTipo(nuevo);
+    if (onChange) onChange(nuevo);
+  };
+
   return (
     <div className="flex justify-center gap-2 mb-4">
       <button
-        onClick={() => onSelect('personalizadas')}
-        className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-          activo === 'personalizadas'
+        onClick={() => handleClick('personalizadas')}
+        className={`px-4 py-2 rounded-full text-sm font-semibold 
+          ${tipo === 'personalizadas'
             ? 'bg-blue-500 text-white'
-            : 'border border-black dark:border-white text-black dark:text-white'
-        }`}
+            : 'border border-black text-black dark:border-white dark:text-white'}`}
       >
         PERSONALIZADAS
       </button>
-
       <button
-        onClick={() => onSelect('preestablecidas')}
-        className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-          activo === 'preestablecidas'
+        onClick={() => handleClick('preestablecidas')}
+        className={`px-4 py-2 rounded-full text-sm font-semibold 
+          ${tipo === 'preestablecidas'
             ? 'bg-blue-500 text-white'
-            : 'border border-black dark:border-white text-black dark:text-white'
-        }`}
+            : 'border border-black text-black dark:border-white dark:text-white'}`}
       >
         PREESTABLECIDAS
       </button>

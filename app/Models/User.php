@@ -20,13 +20,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function rutinas()
+        public function rutinas()
     {
         return $this->hasMany(Rutina::class);
     }
 
-    public function comidas()
+        public function comidas()
     {
         return $this->hasMany(Comida::class);
     }
+
+
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ConfiguracionItem = ({ label, to, onClick, textColor = 'text-white' }) => {
+const ConfiguracionItem = ({ label, to, onClick, textColor = 'text-black dark:text-white' }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {

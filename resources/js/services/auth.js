@@ -1,29 +1,29 @@
+// resources/js/services/auth.js
 import api from '../lib/axios';
 
-export const login = async (email, password) => {
-  await api.get('/sanctum/csrf-cookie'); // Paso obligatorio
-  const response = await api.post('/api/login', { email, password });
-  return response.data;
+export const register = async (form) => {
+  const { data } = await api.post('/api/register', form);
+  // Guardar token en localStorage
+  localStorage.setItem('accessToken', data.token);
+  console.log('🔐 register token:', data.token);
+  return data.user;
 };
 
-export const getUser = async () => {
-  const response = await api.get('/api/user');
-  return response.data;
+export const login = async (email, password) => {
+  const { data } = await api.post('/api/login', { email, password });
+  // Guardar token en localStorage
+  localStorage.setItem('accessToken', data.token);
+  console.log('🔐 login token:', data.token);
+  return data.user;
+};
+
+export const getUserProfile = async () => {
+  const { data } = await api.get('/api/user');
+  return data;
 };
 
 export const logout = async () => {
   await api.post('/api/logout');
+  // Borrar token de localStorage
+  localStorage.removeItem('accessToken');
 };
-
-export const register = async ({ name, email, password, password_confirmation }) => {
-    await api.get('/sanctum/csrf-cookie');
-  
-    const response = await api.post('/api/register', {
-      name,
-      email,
-      password,
-      password_confirmation,
-    });
-  
-    return response.data;
-  };

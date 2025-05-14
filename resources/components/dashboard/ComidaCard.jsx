@@ -4,7 +4,7 @@ import React from 'react';
 const ComidaCard = ({ tipo, calorias, onAdd }) => {
   return (
     <div className="space-y-2">
-      <p className="uppercase text-sm tracking-wide border-b border-black dark:border-white pb-1">
+      <p className="uppercase text-sm tracking-wide border-b border-black dark:border-white pb-1 mt-2">
         {tipo} | {calorias} KCAL
       </p>
 

@@ -10,6 +10,10 @@ import PerfilPage from './pages/PerfilPage';
 import AjustesPage from './pages/AjustesPage';
 import LoginPage from "./pages/LoginPage"; 
 import RegisterPage from "./pages/RegisterPage";
+import CompleteProfilePage from "./pages/CompleteProfilePage";
+import '../css/app.css';
+
+
 
 
 function App() {
@@ -23,6 +27,8 @@ function App() {
         <Route path="/rutinas" element={<RutinasPage />} />
         <Route path="/perfil" element={<PerfilPage />} />
         <Route path="/ajustes" element={<AjustesPage />} />
+        <Route path="/completar-perfil" element={<CompleteProfilePage />} />
+
       </Routes>
     </Router>
   );

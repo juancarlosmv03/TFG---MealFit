@@ -9,17 +9,18 @@ class Rutina extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id', 'nombre', 'descripcion', 'tiempo_estimado',
-    ];
+   protected $fillable = [
+    'user_id',
+    'nombre',
+    'descripcion',
+    'tiempo_estimado',
+    'calorias',
+    'imagen',
+];
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function ejercicios()
-    {
-        return $this->hasMany(Ejercicio::class);
     }
 }

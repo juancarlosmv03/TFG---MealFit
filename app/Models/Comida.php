@@ -10,11 +10,22 @@ class Comida extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'tipo', 'nombre_comida', 'calorias', 'fecha',
+        'user_id',
+        'alimento_id',
+        'cantidad',
+        'tipo',
+        'fecha',
     ];
+
+    // Relaciones
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function alimento()
+    {
+        return $this->belongsTo(Alimento::class);
     }
 }

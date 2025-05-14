@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
@@ -16,9 +17,9 @@ const LandingPage = () => {
         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center px-4">
           <h1 className="text-white text-3xl md:text-5xl font-bold">Transforma tu Cuerpo Sin Matemáticas</h1>
           <p className="text-white mb-3 mt-3">La primera web en contar calorías y crear rutinas en un solo sitio</p>
-          <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+          <a href='/login' className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
             EMPIEZA GRATIS YA &gt;
-          </button>
+          </a>
         </div>
       </section>
 
