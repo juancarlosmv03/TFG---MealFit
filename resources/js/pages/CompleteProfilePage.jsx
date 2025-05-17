@@ -17,6 +17,7 @@ const CompleteProfilePage = () => {
     altura: '',
     peso: '',
     objetivo: 'mantener',
+    factor_actividad: '1.55',
     foto_perfil: null,
   });
 
@@ -70,6 +71,7 @@ const CompleteProfilePage = () => {
     data.append('altura', form.altura);
     data.append('peso', form.peso);
     data.append('objetivo', form.objetivo);
+    data.append('factor_actividad', form.factor_actividad);
     if (form.foto_perfil) {
       data.append('foto_perfil', form.foto_perfil);
     }
@@ -164,6 +166,22 @@ const CompleteProfilePage = () => {
               <option value="ganar_musculo">Ganar músculo</option>
             </select>
           </div>
+
+          {/*Factor de Actividad*/}
+          <label className="block text-sm mb-1">Actividad</label>
+          <select
+              name="factor_actividad"
+              value={form.factor_actividad}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded border bg-white dark:bg-gray-700 dark:border-gray-600"
+          >
+              <option value="1.2">Sedentario</option>
+              <option value="1.375">Ligero</option>
+              <option value="1.55">Moderado</option>
+              <option value="1.725">Intenso</option>
+              <option value="1.9">Muy intenso</option>
+          </select>
+
 
           {/* Foto de perfil */}
           <div>

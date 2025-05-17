@@ -87,7 +87,7 @@ const obtenerEmoji = (tipoAlimento) => {
       type="number"
       value={cantidadEditada}
       onChange={(e) => setCantidadEditada(e.target.value)}
-      className="w-16 p-1 text-sm border rounded"
+      className="w-16 p-1 text-sm border rounded text-black"
     />
   ) : (
     `${c.cantidad}g`
@@ -142,7 +142,7 @@ const obtenerEmoji = (tipoAlimento) => {
             setCantidadEditada(c.cantidad.toString());
           }}
           title="Editar"
-          className="text-blue-500 hover:text-blue-700"
+          className="text-black hover:text-blue-700"
         >
           ✏️
         </button>
@@ -195,7 +195,7 @@ const obtenerEmoji = (tipoAlimento) => {
             value={cantidadGramos}
             onChange={(e) => setCantidadGramos(e.target.value)}
             placeholder="Cantidad en gramos"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded text-black"
           />
           <button
             onClick={guardarComida}

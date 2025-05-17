@@ -28,20 +28,24 @@ const BuscarAlimentos = ({ onSelect }) => {
         placeholder="Buscar alimento..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded text-black"
       />
 
-      <ul className="bg-white dark:bg-dark border rounded max-h-64 overflow-y-auto">
-        {alimentos.map((alimento) => (
-          <li
-            key={alimento.id}
-            onClick={() => onSelect(alimento)}
-            className="p-2 hover:bg-blue-100 cursor-pointer"
-          >
-            {alimento.nombre}
-          </li>
-        ))}
-      </ul>
+      <ul className="  bg-dark dark:bg-dark border rounded max-h-64 overflow-y-auto">
+  {alimentos.map((alimento) => (
+    <li
+      key={alimento.id}
+      onClick={() => onSelect(alimento)}
+      className="p-2 hover:bg-blue-400 cursor-pointer space-y-1"
+    >
+      <p className="font-semibold">{alimento.nombre}</p>
+      <p className="text-xs text-gray-600">
+        {alimento.calorias} kcal · {alimento.proteinas}g prot · {alimento.grasas}g grasa · {alimento.carbohidratos}g carb
+      </p>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 };
