@@ -24,9 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/comidas', [ComidaController::class, 'index']);
     Route::get('/alimentos', [AlimentoController::class, 'index']);
 
-});
-
-Route::middleware('auth:sanctum')->group(function () {
     Route::get('/rutinas', [RutinaController::class, 'index']);
     Route::post('/rutinas', [RutinaController::class, 'store']);
     Route::put('/rutinas/{id}', [RutinaController::class, 'update']);
@@ -34,6 +31,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/rutinas/preestablecidas', [RutinaController::class, 'preestablecidas']);
     Route::delete('/comidas/{id}', [ComidaController::class, 'destroy']);
     Route::put('/comidas/{id}', [ComidaController::class, 'update']);
-
+    Route::post('/cambiar-email', [UserController::class, 'cambiarEmail']);
+    Route::post('/cambiar-nombre', [UserController::class, 'cambiarNombre']);
+    Route::delete('/eliminar-cuenta', [UserController::class, 'eliminarCuenta']);
+    Route::post('/cambiar-contrasena', [UserController::class, 'cambiarContrasena']);
+    Route::post('/usuario/foto-perfil', [UserController::class, 'updateProfilePicture']);
 });
+
 

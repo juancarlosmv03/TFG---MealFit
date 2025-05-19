@@ -25,7 +25,7 @@ class RutinaController extends Controller
     {
         return response()->json(
             Rutina::where('tipo', 'preestablecida')
-                ->where('user_id', 1)
+                ->where('user_id', 4)
                 ->latest()
                 ->get()
         );

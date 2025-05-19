@@ -3,6 +3,13 @@ import {React,useState} from 'react';
 import Layout from '../../components/layout/Layout';
 import ConfiguracionItem from '../../components/ajustes/ConfiguracionItem';
 import CerrarSesionButton from '../../components/ajustes/CerrarSesionButton';
+import CambiarPassword from '../../components/ajustes/CambiarPassword';
+import CambiarEmail from '../../components/ajustes/CambiarEmail';
+import CambiarNombre from '../../components/ajustes/CambiarNombre';
+import api from '../lib/axios';
+
+//import CambiarIdioma from '../../components/ajustes/CambiarIdioma';
+
 
 
 
@@ -12,35 +19,25 @@ const AjustesPage = () => {
     console.log('Cerrar sesión...');
     // Aquí iría la lógica real de logout (token, redirección, etc.)
   };
-  const [form, setForm] = useState({
-  actual: '',
-  nueva: '',
-  confirmar: '',
-});
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
-  setForm((f) => ({ ...f, [name]: value }));
-};
+  const handleEliminarCuenta = async () => {
+  const confirmado = window.confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.');
 
-const handleCambiarPassword = async (e) => {
-  e.preventDefault();
-  if (form.nueva !== form.confirmar) {
-    alert('Las contraseñas no coinciden');
-    return;
-  }
+  if (!confirmado) return;
 
   try {
-    await api.post('/api/cambiar-contrasena', {
-      actual: form.actual,
-      nueva: form.nueva,
-    });
-    alert('Contraseña actualizada');
-    setSeccionActiva(null);
+    await api.delete('/api/eliminar-cuenta');
+    localStorage.removeItem('accessToken');
+    navigate('/register');
   } catch (err) {
-    alert(err.response?.data?.message || 'Error al cambiar contraseña');
+    console.error('Error al eliminar cuenta', err.response?.data || err.message);
+    alert('Error al eliminar la cuenta.');
   }
 };
+
+  
+
+
 
   return (
     <Layout>
@@ -49,20 +46,27 @@ const handleCambiarPassword = async (e) => {
       {/* Grupo: Cuenta */}
       <section className="space-y-3 mb-6">
         <h2 className="text-lg font-semibold">Cuenta</h2>
-        <ConfiguracionItem label="Cambiar contraseña" onClick={() => setSeccionActiva('password')} />
-        <ConfiguracionItem label="Cambiar email" to="/cambiar-email" />
-        <ConfiguracionItem label="Cambiar nombre de usuario" to="/cambiar-nombre" />
+      <ConfiguracionItem label="Cambiar contraseña" onClick={() => setSeccionActiva('password')} />
+      {seccionActiva === 'password' && <CambiarPassword onClose={() => setSeccionActiva(null)} />}
+
+      <ConfiguracionItem label="Cambiar email" onClick={() => setSeccionActiva('email')} />
+      {seccionActiva === 'email' && <CambiarEmail onClose={() => setSeccionActiva(null)} />}
+
+      <ConfiguracionItem label="Cambiar nombre de usuario" onClick={() => setSeccionActiva('nombre')} />
+      {seccionActiva === 'nombre' && <CambiarNombre onClose={() => setSeccionActiva(null)} />}
+
         <ConfiguracionItem
           label="Eliminar cuenta"
-          onClick={() => alert('Eliminar cuenta')}
+          onClick={handleEliminarCuenta}
           textColor="text-red-500"
         />
+
       </section>
 
       {/* Grupo: Preferencias */}
       <section className="space-y-3 mb-6">
         <h2 className="text-lg font-semibold">Preferencias</h2>
-        <ConfiguracionItem label="Idioma" to="/idioma" />
+<ConfiguracionItem label="Idioma" onClick={() => setSeccionActiva('idioma')} />
       </section>
 
       {/* Grupo: Soporte */}
@@ -75,6 +79,9 @@ const handleCambiarPassword = async (e) => {
 
       {/* Botón de cerrar sesión */}
       <CerrarSesionButton onLogout={handleCerrarSesion} />
+
+{seccionActiva === 'unidades' && <CambiarUnidades onClose={() => setSeccionActiva(null)} />}
+{seccionActiva === 'idioma' && <CambiarIdioma onClose={() => setSeccionActiva(null)} />}
     </Layout>
   );
 };

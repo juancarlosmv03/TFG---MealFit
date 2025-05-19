@@ -21,6 +21,40 @@ const BuscarAlimentos = ({ onSelect }) => {
     fetchAlimentos();
   }, [query]);
 
+  const obtenerEmoji = (tipoAlimento) => {
+  switch (tipoAlimento.toLowerCase()) {
+    case 'cereal':
+      return '🥣';
+    case 'fruta':
+      return '🍎';
+    case 'frutos secos':
+      return '🥜';
+    case 'huevo':
+      return '🥚';
+    case 'lácteo':
+      return '🥛';
+    case 'pan':
+      return '🍞';
+    case 'pasta':
+      return '🍝';
+    case 'patata':
+      return '🥔';
+    case 'pescado':
+      return '🐟';
+    case 'plato':
+      return '🍽️';
+    case 'pollo':
+      return '🍗';
+    case 'postre':
+      return '🍰';
+    case 'verdura':
+      return '🥦';
+    default:
+      return '🍴'; // genérico si no coincide
+  }
+};
+
+
   return (
     <div className="space-y-2">
       <input
@@ -38,7 +72,7 @@ const BuscarAlimentos = ({ onSelect }) => {
       onClick={() => onSelect(alimento)}
       className="p-2 hover:bg-blue-400 cursor-pointer space-y-1"
     >
-      <p className="font-semibold">{alimento.nombre}</p>
+      <p className="font-semibold">{obtenerEmoji(alimento.tipo)}{alimento.nombre}</p>
       <p className="text-xs text-gray-600">
         {alimento.calorias} kcal · {alimento.proteinas}g prot · {alimento.grasas}g grasa · {alimento.carbohidratos}g carb
       </p>
